@@ -9,11 +9,16 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] bool movingDown = false;
     [SerializeField] bool movingLeft = false;
     [SerializeField] bool movingRight = false;
-    [SerializeField] float cameraMoveSpeed = 20f;
+    [SerializeField] float cameraMoveSpeed = 50.0f;
     [SerializeField] int cameraMoveBounds = 5;
     [SerializeField] float scrollSpeed = 3.0f;
     private float minCameraHeight = 5.0f;
-    float maxCameraHeight = 25.0f;
+    float maxCameraHeight = 40.0f;
+
+    private void Start()
+    {
+        this.gameObject.transform.position = new Vector3(0.0f, 40.0f, -140.0f);
+    }
 
     void Update()
     {
@@ -63,7 +68,6 @@ public class CameraMovement : MonoBehaviour
 
     public void Zoom()
     {
-        Debug.Log(Input.mouseScrollDelta.y);
         Vector3 pos = this.gameObject.transform.position;
         pos.y -= Input.mouseScrollDelta.y * scrollSpeed;
         if (pos.y >= minCameraHeight && pos.y <= maxCameraHeight)
