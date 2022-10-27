@@ -45,4 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedBees: []
+  bees: []
   waypoint: {fileID: 0}
+  beePrefab: {fileID: 0}
+  startPoint: {x: 0, y: 0}
+  currentPoint: {x: 0, y: 0}
+  framePassed: 0
+  boxSelectionActive: 0

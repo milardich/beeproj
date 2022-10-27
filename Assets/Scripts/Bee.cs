@@ -6,7 +6,8 @@ public class Bee : MonoBehaviour
 {
     public bool isHighlighted;
     private GameObject highlightPrefab;
-    
+    private int health;
+
     private void Start()
     {
         isHighlighted = false;
