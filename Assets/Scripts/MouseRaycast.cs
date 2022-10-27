@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MouseRaycast : MonoBehaviour
 {
@@ -69,14 +70,23 @@ public class MouseRaycast : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
             if (Physics.Raycast(ray, out hit, 100))
             {
                 if (hit.transform.tag == "Terrain")
                 {
-                    Debug.Log(hit.point);
                     waypoint.transform.position = hit.point;
+                    MoveSelectedBees(waypoint.gameObject.transform.position);
                 }
             }
+        }
+    }
+
+    void MoveSelectedBees(Vector3 destination)
+    {
+        foreach(GameObject bee in selectedBees)
+        {
+            bee.GetComponent<BeeMovement>().destination = destination;
         }
     }
 }

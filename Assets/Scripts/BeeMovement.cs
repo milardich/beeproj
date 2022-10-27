@@ -6,15 +6,22 @@ using UnityEngine.AI;
 public class BeeMovement : MonoBehaviour
 {
     NavMeshAgent agent;
-    [SerializeField] private GameObject waypoint;
-
+    public Vector3 destination;
+    
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        destination = this.transform.position;
+        Move(this.transform.position);
     }
 
     void Update()
     {
-        agent.destination = waypoint.transform.position;
+        Move(destination);
+    }
+
+    void Move(Vector3 position)
+    {    
+        agent.destination = position;
     }
 }

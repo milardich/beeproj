@@ -5,4 +5,7 @@ using UnityEngine;
 public class Bee : MonoBehaviour
 {
     public bool selected;
+    /*
+     * TODO: Bee states: attacking, moving, still
+     */
 }
