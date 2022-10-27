@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc13cfd46c82d741bdb2b2380668662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoint: {fileID: 0}
+  destination: {x: 0, y: 0, z: 0}
 --- !u!195 &-4453514198295173150
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5862ec6a19003c94cb4526284ac353d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: 0
+  isHighlighted: 0
 --- !u!1 &8029125365574181198
 GameObject:
   m_ObjectHideFlags: 0

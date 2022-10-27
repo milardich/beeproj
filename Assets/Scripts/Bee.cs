@@ -4,8 +4,39 @@ using UnityEngine;
 
 public class Bee : MonoBehaviour
 {
-    public bool selected;
-    /*
-     * TODO: Bee states: attacking, moving, still
-     */
+    public bool isHighlighted;
+    private GameObject highlightPrefab;
+    
+    private void Start()
+    {
+        isHighlighted = false;
+        highlightPrefab = this.transform.GetChild(1).gameObject;
+    }
+
+    void LateUpdate()
+    {
+        ManageHighlight();
+    }
+
+    public void ManageHighlight()
+    {
+        if (isHighlighted)
+        {
+            HighlightOn();
+        }
+        else
+        {
+            HighlightOff();
+        }
+    }
+
+    public void HighlightOn()
+    {
+        highlightPrefab.SetActive(true);
+    }
+
+    public void HighlightOff()
+    {
+        highlightPrefab.SetActive(false);
+    }
 }
