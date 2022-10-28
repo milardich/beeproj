@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: -4453514198295173150}
   - component: {fileID: 3111140188163261291}
   - component: {fileID: 1216392254013690961}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BeeTest
   m_TagString: Bee
   m_Icon: {fileID: 0}
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5862ec6a19003c94cb4526284ac353d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beeManager: {fileID: 0}
   isHighlighted: 0
   destination: {x: 0, y: 0, z: 0}
   lineRenderer: {fileID: 0}

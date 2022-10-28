@@ -10,6 +10,7 @@ using UnityEngine.AI;
 
 public class Bee : MonoBehaviour
 {
+    [SerializeField] private BeeManager beeManager;
     public bool isHighlighted;
     private GameObject highlightPrefab;
     [SerializeField] private Vector3 destination;
@@ -19,6 +20,11 @@ public class Bee : MonoBehaviour
 
     private void Start()
     {
+        beeManager = GameObject.Find("BeeManager").GetComponent<BeeManager>();
+        if (!beeManager.bees.Contains(this.gameObject))
+        {
+            beeManager.bees.Add(this.gameObject);
+        }
         isHighlighted = false;
         highlightPrefab = this.transform.GetChild(1).gameObject;
         lineRenderer = this.GetComponent<LineRenderer>();
