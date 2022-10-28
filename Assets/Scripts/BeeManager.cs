@@ -33,7 +33,7 @@ public class BeeManager : MonoBehaviour
     {
         selectedBees = new List<GameObject>();
         bees = new List<GameObject>();
-        waypoint = GameObject.FindGameObjectWithTag("Waypoint");
+        //waypoint = GameObject.FindGameObjectWithTag("Waypoint");
         beePrefab = GameObject.Find("BeeTest");
 
 
@@ -59,8 +59,9 @@ public class BeeManager : MonoBehaviour
     {
         SpecificSelection();
         BoxSelection();
-        SetWaypoint();   
+        SetWaypoint();
     }
+
 
     void SetWaypoint()
     {
@@ -73,8 +74,7 @@ public class BeeManager : MonoBehaviour
             {
                 if (hit.transform.tag == "Terrain")
                 {
-                    waypoint.transform.position = hit.point;
-                    SetBeeDestination(waypoint.gameObject.transform.position);
+                    SetBeeDestination(hit.point);
                 }
             }
         }
@@ -169,5 +169,4 @@ public class BeeManager : MonoBehaviour
         }
         highlightEvent.Invoke();
     }
-
 }
