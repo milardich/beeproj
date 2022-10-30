@@ -93,8 +93,7 @@ public class BeeManager : MonoBehaviour
             startPosition = Vector2.zero;
             endPosition = Vector2.zero;
             DrawVisual();
-        }
-        
+        }   
     }
 
     private void DrawVisual()
@@ -231,4 +230,5 @@ public class BeeManager : MonoBehaviour
         }
         highlightEvent.Invoke();
     }
+    
 }
