@@ -54,9 +54,7 @@ public class Unit : MonoBehaviour, ISelectable, IHighlightable
     }
 
     void Start()
-    {
-        //  null reference exception ???
-        
+    {        
         if (!UnitManager.Instance.Units.Contains(this))
         {
             UnitManager.Instance.Units.Add(this);

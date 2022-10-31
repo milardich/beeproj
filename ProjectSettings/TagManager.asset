@@ -7,6 +7,7 @@ TagManager:
   - Bee
   - Terrain
   - Waypoint
+  - Unit
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - Clickable
+  - Selectable
   - 
   - 
   - 

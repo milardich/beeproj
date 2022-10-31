@@ -21,4 +21,23 @@ public class UnitManager : MonoBehaviour
         Units = new List<Unit>();
         SelectedUnits = new List<Unit>();
     }
+
+    public void AddToSelectedUnits(Unit unit)
+    {
+        if (!SelectedUnits.Contains(unit))
+        {
+            SelectedUnits.Add(unit);
+        }
+    }
+
+    public void DeselectAllUnits()
+    {
+        foreach (Unit unit in Units)
+        {
+            if (SelectedUnits.Contains(unit))
+            {
+                unit.Deselect();
+            }
+        }
+    }
 }
