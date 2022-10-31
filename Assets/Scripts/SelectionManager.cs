@@ -34,7 +34,7 @@ public class SelectionManager : MonoBehaviour
         if(Physics.Raycast(ray, out hit, Mathf.Infinity, selectableLayerMask))
         {
             ISelectable selectable = hit.collider.GetComponent<ISelectable>();
-            if(selectable != null)
+            if (selectable != null)
             {
                 selectable.Select();
             }
@@ -49,7 +49,10 @@ public class SelectionManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(inputManager.mouseLeft))
         {
-            unitManager.DeselectAllUnits();
+            if (!Input.GetKey(inputManager.groupSelect))
+            {
+                unitManager.DeselectAllUnits();
+            }
             ProcessSelection();
         }
     }

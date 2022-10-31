@@ -40,4 +40,12 @@ public class UnitManager : MonoBehaviour
             }
         }
     }
+
+    public void DeselectUnit(Unit unit)
+    {
+        if (SelectedUnits.Contains(unit))
+        {
+            unit.Deselect();
+        }
+    }
 }
