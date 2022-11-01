@@ -47,7 +47,7 @@ public class SelectionManager : MonoBehaviour
 
     public void ClickSelect()
     {
-        if (Input.GetMouseButtonDown(inputManager.mouseLeft))
+        if (Input.GetMouseButtonDown(inputManager.mousePrimary))
         {
             if (!Input.GetKey(inputManager.groupSelect))
             {

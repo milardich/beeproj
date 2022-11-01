@@ -59,7 +59,6 @@ public class Unit : MonoBehaviour, ISelectable, IHighlightable
         {
             UnitManager.Instance.Units.Add(this);
         }
-        
         highlightCircle = this.transform.GetChild(0).gameObject;
     }
 }
