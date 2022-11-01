@@ -24,27 +24,18 @@ public class Unit : MonoBehaviour, ISelectable, IHighlightable
     public void Select()
     {
         this.isSelected = true;
-        /* when unit is selected: */
-        // add unit to list of selected units (with UnitManager(singleton class))
         if (!UnitManager.Instance.SelectedUnits.Contains(this))
         {
             UnitManager.Instance.SelectedUnits.Add(this);
         }
-
-        // show selection highlight (circle below unit, outline, show health)
         Highlight();
-
-        // display unit info and abilities in UI
-        //
-
+        
         Debug.Log("Selected: " + this.name);
     }
 
     public void Deselect()
     {
         this.isSelected = false;
-        /* when unit is unselected: */
-        // remove from list of selected units
         if (UnitManager.Instance.SelectedUnits.Contains(this))
         {
             UnitManager.Instance.SelectedUnits.Remove(this);

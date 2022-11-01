@@ -338,6 +338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorkerBee (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4699091083282594721, guid: a07f1c3c951181240955a4be76d6bcad, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8029789112300411533, guid: a07f1c3c951181240955a4be76d6bcad, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -604,7 +608,7 @@ GameObject:
   - component: {fileID: 1095783514}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
