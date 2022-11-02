@@ -42,6 +42,7 @@ public class BeeController : MonoBehaviour
     {
         Vector3 destination = Vector3.zero;
         IMoveable moveable;
+        IWorker worker;
 
         if (hit.transform.tag == "Terrain")
         {
@@ -49,10 +50,20 @@ public class BeeController : MonoBehaviour
             foreach (Unit unit in unitManager.SelectedUnits)
             {
                 bool canMove = unit.TryGetComponent<IMoveable>(out moveable);
+                bool isWorker = unit.TryGetComponent<IWorker>(out worker);
                 if (canMove)
                 {
                     moveable.Move(destination);
                 }
+                
+                if (isWorker)
+                {
+                    if (worker.IsWorking)
+                    {
+                        worker.StopWorking();
+                    }
+                }
+                
             }
         }
     }

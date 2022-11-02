@@ -9,7 +9,7 @@ public class WorkerBee : Unit, IMoveable, IWorker
     private NavMeshAgent agent;
     [SerializeField] int workPerformance = 100; //%, TODO: read this from config file
     [SerializeField] private IWorkplace currentWorkplace;
-    public bool IsAvailable { get; private set; }
+    private bool isWorking = false;
 
     void Awake()
     {
@@ -30,14 +30,13 @@ public class WorkerBee : Unit, IMoveable, IWorker
     #region Worker
     public int WorkPerformance { get => this.workPerformance; }
 
-    public IWorkplace CurrentWorkplace()
-    {
-        return this.currentWorkplace;
-    }
+    public IWorkplace CurrentWorkplace{ get => this.currentWorkplace; }
+
+    public bool IsWorking { get => this.isWorking; set => this.isWorking = value; }
 
     public void Work(IWorkplace workPlace)
     {
-        IsAvailable = false;
+        this.IsWorking = true;
         Debug.Log($"Bee [{this.name}] is now working at [{workPlace.Name}]!");
         this.currentWorkplace = workPlace;
         currentWorkplace.AddWorker(this);    
@@ -46,11 +45,11 @@ public class WorkerBee : Unit, IMoveable, IWorker
 
     public void StopWorking()
     {
-        IsAvailable = true;
+        this.IsWorking = false;
         Debug.Log($"Bee [{this.name}] stopped working!");
-        StopMoving();
-        this.currentWorkplace = null;
+        //StopMoving();
         currentWorkplace.RemoveWorker(this);
+        //this.currentWorkplace = null;
     }
     #endregion
 
