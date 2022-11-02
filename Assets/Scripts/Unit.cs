@@ -44,7 +44,7 @@ public class Unit : MonoBehaviour, ISelectable, IHighlightable
         Debug.Log("Deselected: " + this.name);
     }
 
-    void Start()
+    protected void Start()
     {        
         if (!UnitManager.Instance.Units.Contains(this))
         {

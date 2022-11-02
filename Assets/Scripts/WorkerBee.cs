@@ -16,6 +16,11 @@ public class WorkerBee : Unit, IMoveable, IWorker
         agent = this.GetComponent<NavMeshAgent>();
     }
 
+    new void Start()
+    {
+        base.Start();
+    }
+
     public void Move(Vector3 destination)
     {
         this.agent.isStopped = false;
@@ -27,7 +32,7 @@ public class WorkerBee : Unit, IMoveable, IWorker
         this.agent.isStopped = true;
     }
 
-    #region Worker
+    #region IWorker
     public int WorkPerformance { get => this.workPerformance; }
 
     public IWorkplace CurrentWorkplace{ get => this.currentWorkplace; }

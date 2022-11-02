@@ -13,15 +13,15 @@ public class Building : Unit, IWorkplace
         workers = new List<IWorker>();
     }
 
-    void Start()
+    new void Start()
     {
-        //Debug.Log(this.WorkLocation);
+        base.Start();   
     }
 
-    #region Workplace
-    public string Name { get => workName; }
+    #region IWorkplace
+    public string Name { get => this.workName; }
 
-    public List<IWorker> Workers { get => workers; }
+    public List<IWorker> Workers { get => this.workers; }
 
     public void AddWorker(IWorker worker)
     {
