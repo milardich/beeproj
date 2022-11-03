@@ -210,3 +210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSelected: 0
+  spawnWaypoint: {x: 0, y: 0, z: 0}
+  spawnableUnits: []
+  workerBee: {fileID: -7054911713914608861, guid: a07f1c3c951181240955a4be76d6bcad, type: 3}

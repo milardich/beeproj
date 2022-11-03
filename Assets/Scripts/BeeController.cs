@@ -26,9 +26,6 @@ public class BeeController : MonoBehaviour
             Vector3 destination = Vector3.zero;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            //IMoveable moveable;
-            //IWorker worker;
-            //IWorkplace workplace;
 
             if (Physics.Raycast(ray, out hit))
             {
