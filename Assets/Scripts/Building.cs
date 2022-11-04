@@ -3,30 +3,31 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor;
 using UnityEngine;
 
-public class Building : Unit, IWorkplace
+public class Building : Unit, IWorkplace, ISpawner
 {
-    private string workName = "Barracks [test]";
+    private string workName = "Building [test]";
     private List<IWorker> workers;
     [SerializeField] private Vector3 spawnWaypoint;
     private InputManager inputManager;
 
     //spawnable objects
-    [SerializeField] private List<Unit> spawnableUnits;
+    [SerializeField] public List<Unit> SpawnableUnits { get; set; }
     [SerializeField] private WorkerBee workerBee;
     // private WarriorBee warriorBee...
 
     void Awake()
     {
         workers = new List<IWorker>();
-        spawnableUnits = new List<Unit>();
+        SpawnableUnits = new List<Unit>();
     }
 
     new void Start()
     {
         base.Start();
+
         inputManager = InputManager.Instance;
-        if(!spawnableUnits.Contains(workerBee)) {
-            spawnableUnits.Add(workerBee);
+        if(!SpawnableUnits.Contains(workerBee)) {
+            SpawnableUnits.Add(workerBee);
         }
     }
 
@@ -41,15 +42,11 @@ public class Building : Unit, IWorkplace
                     spawnWaypoint = hit.point;
                 }
             }
-        }
-
-        if(this.IsSelected()) {
-            SpawnBee(spawnWaypoint);
+            ManageSpawning();
         }
     }
 
 
-    #region IWorkplace
     public string Name { get => this.workName; }
 
     public List<IWorker> Workers { get => this.workers; }
@@ -77,13 +74,20 @@ public class Building : Unit, IWorkplace
         // if building is damaged, bee's work would be to repair damages (heal building)
         Debug.Log($"Building [ {this.Name} ] is being repaired");
     }
-    #endregion
 
-    void SpawnBee(Vector3 waypoint)
+    public void Spawn(Unit unit, Vector3 waypoint)
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1)) {
-            WorkerBee bee = Instantiate(workerBee, this.transform.position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
-            bee.Move(waypoint);
+        Unit spawnedUnit = Instantiate(unit, this.transform.position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
+        bool canMove = spawnedUnit.TryGetComponent<IMoveable>(out IMoveable moveable);
+        if(canMove) {
+            moveable.Move(waypoint);
+        }
+    }
+
+    public void ManageSpawning()
+    {
+        if(Input.GetKeyDown(inputManager.spawnWorkerBee)) {
+            Spawn(workerBee, spawnWaypoint);
         }
     }
 
@@ -91,7 +95,7 @@ public class Building : Unit, IWorkplace
      * Barracks abilities:
      * 
      * upgrade building levels (costs resource and unlocks new units)
-     * [ ] spawn melee bees (fast but small dmg)
+     * [X] spawn melee bees (fast but small dmg)
      * spawn tank bees (slow but big dmg)
      * shoot at nearby enemies on max lvl
      */

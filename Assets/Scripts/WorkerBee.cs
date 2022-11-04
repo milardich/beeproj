@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class WorkerBee : Unit, IMoveable, IWorker
     [SerializeField] int workPerformance = 100; //%, TODO: read this from config file
     [SerializeField] private IWorkplace currentWorkplace;
     private bool isWorking = false;
+    [SerializeField] private List<Building> buildableBuildings;
 
     void Awake()
     {
@@ -57,6 +59,8 @@ public class WorkerBee : Unit, IMoveable, IWorker
         //this.currentWorkplace = null;
     }
     #endregion
+
+    
 
     /* Worker bee abilities:
      * 

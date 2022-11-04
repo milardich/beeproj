@@ -19,7 +19,8 @@ public class SelectionManager : MonoBehaviour
 
     void Update()
     {
-        ClickSelect();    
+        ClickSelect();
+        SelectAllMoveables();
     }
 
     
@@ -54,6 +55,19 @@ public class SelectionManager : MonoBehaviour
                 unitManager.DeselectAllUnits();
             }
             ProcessSelection();
+        }
+    }
+
+    public void SelectAllMoveables()
+    {
+        if(Input.GetKeyDown(inputManager.selectAllBees)) {
+            unitManager.DeselectAllUnits();
+            foreach(Unit unit in unitManager.Units) {
+                bool isMoveable = unit.TryGetComponent<IMoveable>(out IMoveable moveable);
+                if(isMoveable && !unit.IsSelected()) {
+                    unit.Select();
+                }
+            }
         }
     }
 
