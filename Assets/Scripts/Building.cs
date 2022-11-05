@@ -13,6 +13,8 @@ public class Building : Unit, IWorkplace, ISpawner
     //spawnable objects
     [SerializeField] public List<Unit> SpawnableUnits { get; set; }
     [SerializeField] private WorkerBee workerBee;
+    [SerializeField] private GameObject loadedPrefab;
+    private Unit spawnableUnit;
     // private WarriorBee warriorBee...
 
     void Awake()
@@ -24,10 +26,13 @@ public class Building : Unit, IWorkplace, ISpawner
     new void Start()
     {
         base.Start();
-
         inputManager = InputManager.Instance;
-        if(!SpawnableUnits.Contains(workerBee)) {
-            SpawnableUnits.Add(workerBee);
+
+        loadedPrefab = PrefabUtility.LoadPrefabContents("Assets/Prefabs/test_prefabs2/WorkerBee.prefab");
+        spawnableUnit = loadedPrefab.GetComponent<Unit>();
+
+        if(!SpawnableUnits.Contains(spawnableUnit)) {
+            SpawnableUnits.Add(spawnableUnit);
         }
     }
 
@@ -87,7 +92,7 @@ public class Building : Unit, IWorkplace, ISpawner
     public void ManageSpawning()
     {
         if(Input.GetKeyDown(inputManager.spawnWorkerBee)) {
-            Spawn(workerBee, spawnWaypoint);
+            Spawn(SpawnableUnits[0], spawnWaypoint);
         }
     }
 

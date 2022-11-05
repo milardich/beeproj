@@ -17,6 +17,9 @@ public class BeeController : MonoBehaviour
     void Update()
     {
         ControllSelectedBees();
+        if(Input.GetKeyDown(inputManager.stop)) {
+            StopMovingSelectedUnits();
+        }
     }
 
     void ControllSelectedBees()
@@ -86,5 +89,16 @@ public class BeeController : MonoBehaviour
                 }
             }
         }
+    }
+
+    //TODO: move this to MovementManager class or something
+    void StopMovingSelectedUnits()
+    {
+        foreach(Unit unit in unitManager.SelectedUnits) {
+            bool canMove = unit.TryGetComponent<IMoveable>(out IMoveable moveable);
+            if(canMove) {
+                moveable.StopMoving();
+            }
+        }   
     }
 }

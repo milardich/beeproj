@@ -15,6 +15,10 @@ public class InputManager : MonoBehaviour
     public KeyCode stop { get { return KeyCode.S; } }
     public KeyCode selectAllBees { get { return KeyCode.F2; } }
     public KeyCode selectFreeWorker { get { return KeyCode.F1; } }
+    public KeyCode ability1 { get { return KeyCode.Q; } }
+    public KeyCode ability2 { get { return KeyCode.W; } }
+    public KeyCode ability3 { get { return KeyCode.E; } }
+    public KeyCode ability4 { get { return KeyCode.R; } }
 
     public static InputManager Instance { get; private set; }
 
