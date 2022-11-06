@@ -8,7 +8,6 @@ public class WarriorBee : Unit, IMoveable, IOffensive, IAbilityCaster
 {
     private NavMeshAgent agent;
     private InputManager inputManager;
-    [SerializeField] private float movementSpeed;
 
     public List<IAbility> Abilities { get; set; }
 
@@ -20,7 +19,6 @@ public class WarriorBee : Unit, IMoveable, IOffensive, IAbilityCaster
     new void Start()
     {
         base.Start();
-        movementSpeed = 15.0f;
         inputManager = InputManager.Instance;
         Abilities = new List<IAbility>();
         SetupAbilities();
@@ -29,7 +27,8 @@ public class WarriorBee : Unit, IMoveable, IOffensive, IAbilityCaster
     void Update()
     {
         // move this to AbilityManager class or something
-        if(Input.GetKeyDown(inputManager.ability1) && this.IsSelected()) {
+        if (Input.GetKeyDown(inputManager.ability1) && this.IsSelected())
+        {
             UseAbility(this.Abilities[0]);
         }
     }

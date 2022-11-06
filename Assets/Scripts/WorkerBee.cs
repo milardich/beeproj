@@ -34,10 +34,10 @@ public class WorkerBee : Unit, IMoveable, IWorker
         this.agent.SetDestination(this.transform.position);
         this.agent.isStopped = true;
     }
-    
+
     public int WorkPerformance { get => this.workPerformance; }
 
-    public IWorkplace CurrentWorkplace{ get => this.currentWorkplace; }
+    public IWorkplace CurrentWorkplace { get => this.currentWorkplace; }
 
     public bool IsWorking { get => this.isWorking; set => this.isWorking = value; }
 
@@ -46,7 +46,7 @@ public class WorkerBee : Unit, IMoveable, IWorker
         this.IsWorking = true;
         Debug.Log($"Bee [{this.name}] is now working at [{workPlace.Name}]!");
         this.currentWorkplace = workPlace;
-        currentWorkplace.AddWorker(this);    
+        currentWorkplace.AddWorker(this);
         workPlace.ProcessWork();
     }
 

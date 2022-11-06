@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public interface IWorker 
+public interface IWorker
 {
     int WorkPerformance { get; }
     bool IsWorking { get; set; }

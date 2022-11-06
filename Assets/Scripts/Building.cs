@@ -29,24 +29,16 @@ public class Building : Unit, IWorkplace, ISpawner
         loadedPrefab = PrefabUtility.LoadPrefabContents("Assets/Prefabs/test_prefabs2/WorkerBee.prefab");
         spawnableUnit = loadedPrefab.GetComponent<Unit>();
 
-        if(!SpawnableUnits.Contains(spawnableUnit)) {
+        if (!SpawnableUnits.Contains(spawnableUnit))
+        {
             SpawnableUnits.Add(spawnableUnit);
         }
     }
 
     void Update()
     {
-        if(this.IsSelected()) {
-            if(Input.GetMouseButtonDown(inputManager.mouseSecondary)) {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if(Physics.Raycast(ray, out hit)) {
-                    spawnWaypoint = hit.point;
-                }
-            }
-            ManageSpawning();
-        }
+        ManageWaypoint();
+        ManageSpawning();
     }
 
 
@@ -82,15 +74,37 @@ public class Building : Unit, IWorkplace, ISpawner
     {
         Unit spawnedUnit = Instantiate(unit, this.transform.position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
         bool canMove = spawnedUnit.TryGetComponent<IMoveable>(out IMoveable moveable);
-        if(canMove) {
+        if (canMove)
+        {
             moveable.Move(waypoint);
         }
     }
 
     public void ManageSpawning()
     {
-        if(Input.GetKeyDown(inputManager.spawnWorkerBee)) {
-            Spawn(SpawnableUnits[0], spawnWaypoint);
+        if (this.IsSelected())
+        {
+            if (Input.GetKeyDown(inputManager.spawnWorkerBee))
+            {
+                Spawn(SpawnableUnits[0], spawnWaypoint);
+            }
+        }
+    }
+
+    public void ManageWaypoint()
+    {
+        if (this.IsSelected())
+        {
+            if (Input.GetMouseButtonDown(inputManager.mouseSecondary))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    spawnWaypoint = hit.point;
+                }
+            }
         }
     }
 

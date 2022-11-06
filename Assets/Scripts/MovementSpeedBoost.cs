@@ -16,7 +16,8 @@ public class MovementSpeedBoost : MonoBehaviour, IAbility
     public void Cast()
     {
         bool hasNavMeshAgent = this.TryGetComponent<NavMeshAgent>(out NavMeshAgent agent);
-        if(hasNavMeshAgent) {
+        if (hasNavMeshAgent)
+        {
             agent.speed += agent.speed * 0.5f;
         }
     }

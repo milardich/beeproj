@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour, ISelectable, IHighlightable
             UnitManager.Instance.SelectedUnits.Add(this);
         }
         Highlight();
-        
+
         Debug.Log("Selected: " + this.name);
     }
 
@@ -45,7 +45,7 @@ public class Unit : MonoBehaviour, ISelectable, IHighlightable
     }
 
     protected void Start()
-    {        
+    {
         if (!UnitManager.Instance.Units.Contains(this))
         {
             UnitManager.Instance.Units.Add(this);

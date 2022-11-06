@@ -23,7 +23,7 @@ public class SelectionManager : MonoBehaviour
         SelectAllMoveables();
     }
 
-    
+
     /*
      * Selectable layer mask is used to deselect all units in case of
      * clicking on objects that are not in that same layer mask
@@ -32,7 +32,7 @@ public class SelectionManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, Mathf.Infinity, selectableLayerMask))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableLayerMask))
         {
             ISelectable selectable = hit.collider.GetComponent<ISelectable>();
             if (selectable != null)
@@ -60,11 +60,14 @@ public class SelectionManager : MonoBehaviour
 
     public void SelectAllMoveables()
     {
-        if(Input.GetKeyDown(inputManager.selectAllBees)) {
+        if (Input.GetKeyDown(inputManager.selectAllBees))
+        {
             unitManager.DeselectAllUnits();
-            foreach(Unit unit in unitManager.Units) {
+            foreach (Unit unit in unitManager.Units)
+            {
                 bool isMoveable = unit.TryGetComponent<IMoveable>(out IMoveable moveable);
-                if(isMoveable && !unit.IsSelected()) {
+                if (isMoveable && !unit.IsSelected())
+                {
                     unit.Select();
                 }
             }

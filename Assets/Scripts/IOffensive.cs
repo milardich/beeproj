@@ -1,4 +1,4 @@
-﻿public interface IOffensive 
+﻿public interface IOffensive
 {
-    void Attack(int damageAmount);        
+    void Attack(int damageAmount);
 }

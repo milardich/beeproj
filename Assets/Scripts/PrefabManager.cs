@@ -7,13 +7,15 @@ public class PrefabManager : MonoBehaviour
     //public List<Unit> Units { get; private set; }
     public Dictionary<string, Unit> UnitPrefabs { get; private set; }
     public static PrefabManager Instance { get; private set; }
-    
+
     void Awake()
     {
-        if(Instance != null && Instance != this) {
+        if (Instance != null && Instance != this)
+        {
             Destroy(this);
         }
-        else {
+        else
+        {
             Instance = this;
         }
         UnitPrefabs = new Dictionary<string, Unit>();
