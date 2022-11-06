@@ -9,7 +9,7 @@ public class WorkerBee : Unit, IMoveable, IWorker
     //[SerializeField] private Vector3 destination;
     private NavMeshAgent agent;
     [SerializeField] int workPerformance = 100; //%, TODO: read this from config file
-    [SerializeField] private IWorkplace currentWorkplace;
+    private IWorkplace currentWorkplace;
     private bool isWorking = false;
     [SerializeField] private List<Building> buildableBuildings;
 
@@ -26,15 +26,15 @@ public class WorkerBee : Unit, IMoveable, IWorker
     public void Move(Vector3 destination)
     {
         this.agent.isStopped = false;
-        this.agent.destination = destination;
+        this.agent.SetDestination(destination);
     }
 
     public void StopMoving()
     {
+        this.agent.SetDestination(this.transform.position);
         this.agent.isStopped = true;
     }
-
-    #region IWorker
+    
     public int WorkPerformance { get => this.workPerformance; }
 
     public IWorkplace CurrentWorkplace{ get => this.currentWorkplace; }
@@ -58,9 +58,7 @@ public class WorkerBee : Unit, IMoveable, IWorker
         currentWorkplace.RemoveWorker(this);
         //this.currentWorkplace = null;
     }
-    #endregion
 
-    
 
     /* Worker bee abilities:
      * 

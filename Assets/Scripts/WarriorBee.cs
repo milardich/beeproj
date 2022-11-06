@@ -8,6 +8,7 @@ public class WarriorBee : Unit, IMoveable, IOffensive, IAbilityCaster
 {
     private NavMeshAgent agent;
     private InputManager inputManager;
+    [SerializeField] private float movementSpeed;
 
     public List<IAbility> Abilities { get; set; }
 
@@ -19,6 +20,7 @@ public class WarriorBee : Unit, IMoveable, IOffensive, IAbilityCaster
     new void Start()
     {
         base.Start();
+        movementSpeed = 15.0f;
         inputManager = InputManager.Instance;
         Abilities = new List<IAbility>();
         SetupAbilities();
@@ -35,11 +37,12 @@ public class WarriorBee : Unit, IMoveable, IOffensive, IAbilityCaster
     public void Move(Vector3 destination)
     {
         this.agent.isStopped = false;
-        this.agent.destination = destination;
+        this.agent.SetDestination(destination);
     }
 
     public void StopMoving()
     {
+        this.agent.SetDestination(this.transform.position);
         this.agent.isStopped = true;
     }
 

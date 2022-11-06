@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,8 +10,7 @@ public class Building : Unit, IWorkplace, ISpawner
     private InputManager inputManager;
 
     //spawnable objects
-    [SerializeField] public List<Unit> SpawnableUnits { get; set; }
-    [SerializeField] private WorkerBee workerBee;
+    public List<Unit> SpawnableUnits { get; set; }
     [SerializeField] private GameObject loadedPrefab;
     private Unit spawnableUnit;
     // private WarriorBee warriorBee...
