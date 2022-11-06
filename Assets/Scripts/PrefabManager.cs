@@ -5,7 +5,7 @@ using UnityEditor;
 public class PrefabManager : MonoBehaviour
 {
     //public List<Unit> Units { get; private set; }
-    public Dictionary<string, GameObject> Units { get; private set; }
+    public Dictionary<string, Unit> UnitPrefabs { get; private set; }
     public static PrefabManager Instance { get; private set; }
     
     void Awake()
@@ -16,21 +16,21 @@ public class PrefabManager : MonoBehaviour
         else {
             Instance = this;
         }
-        Units = new Dictionary<string, GameObject>();
+        UnitPrefabs = new Dictionary<string, Unit>();
         SetupUnitDictionary();
     }
 
     private void SetupUnitDictionary()
     {
-        Units.Add("Warrior", LoadPrefab("WarriorBee.prefab"));
-        Units.Add("Worker", LoadPrefab("WorkerBee.prefab"));
-        Units.Add("Barracks", LoadPrefab("Barracks.prefab"));
-        Units.Add("Nexus", LoadPrefab("NexusTest.prefab"));
+        UnitPrefabs.Add("Warrior", LoadUnitPrefab("WarriorBee.prefab"));
+        UnitPrefabs.Add("Worker", LoadUnitPrefab("WorkerBee.prefab"));
+        UnitPrefabs.Add("Barracks", LoadUnitPrefab("Barracks.prefab"));
+        UnitPrefabs.Add("Nexus", LoadUnitPrefab("NexusTest.prefab"));
     }
 
-    private GameObject LoadPrefab(string prefab)
+    private Unit LoadUnitPrefab(string prefab)
     {
         string path = "Assets/Prefabs/test_prefabs2";
-        return PrefabUtility.LoadPrefabContents($"{path}/{prefab}");
+        return PrefabUtility.LoadPrefabContents($"{path}/{prefab}").GetComponent<Unit>();
     }
 }
