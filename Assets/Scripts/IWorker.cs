@@ -1,10 +1,11 @@
 public interface IWorker
 {
-    int WorkPerformance { get; }
+    float WorkPerformance { get; }
     bool IsWorking { get; set; }
     void Work(IWorkplace workPlace);
     void StopWorking();
     IWorkplace CurrentWorkplace { get; }
+    bool WorkDone { get; set; }
     /*
      * workPlace would be places such as places for collecting honey,
      * repairing specific building etc

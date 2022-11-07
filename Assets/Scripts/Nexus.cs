@@ -40,7 +40,7 @@ public class Nexus : Unit, ISpawner, IWorkplace
 
     public void ProcessWork()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Bee has delivered honey! (honeyAmount++)");
     }
 
     public void RemoveWorker(IWorker worker)

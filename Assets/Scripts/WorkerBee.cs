@@ -8,7 +8,7 @@ public class WorkerBee : Unit, IMoveable, IWorker
 {
     //[SerializeField] private Vector3 destination;
     private NavMeshAgent agent;
-    [SerializeField] int workPerformance = 100; //%, TODO: read this from config file
+    [SerializeField] float workPerformance = 100; //%, TODO: read this from config file
     private IWorkplace currentWorkplace;
     private bool isWorking = false;
     [SerializeField] private List<Building> buildableBuildings;
@@ -35,19 +35,21 @@ public class WorkerBee : Unit, IMoveable, IWorker
         this.agent.isStopped = true;
     }
 
-    public int WorkPerformance { get => this.workPerformance; }
+    public float WorkPerformance { get => this.workPerformance; }
 
     public IWorkplace CurrentWorkplace { get => this.currentWorkplace; }
 
     public bool IsWorking { get => this.isWorking; set => this.isWorking = value; }
 
+    public bool WorkDone { get; set; }
+
     public void Work(IWorkplace workPlace)
     {
-        this.IsWorking = true;
         Debug.Log($"Bee [{this.name}] is now working at [{workPlace.Name}]!");
         this.currentWorkplace = workPlace;
         currentWorkplace.AddWorker(this);
         workPlace.ProcessWork();
+        this.IsWorking = true;
     }
 
     public void StopWorking()
