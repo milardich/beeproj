@@ -4,7 +4,7 @@ public interface IWorker
     bool IsWorking { get; set; }
     void Work(IWorkplace workPlace);
     void StopWorking();
-    IWorkplace CurrentWorkplace { get; }
+    IWorkplace CurrentWorkplace { get; set; }
     bool WorkDone { get; set; }
     /*
      * workPlace would be places such as places for collecting honey,

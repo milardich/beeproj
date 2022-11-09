@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: -6522455585615418572}
   m_Layer: 7
   m_Name: Building
-  m_TagString: Untagged
+  m_TagString: Workplace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,5 +211,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   spawnWaypoint: {x: 0, y: 0, z: 0}
-  spawnableUnits: []
-  workerBee: {fileID: -7054911713914608861, guid: a07f1c3c951181240955a4be76d6bcad, type: 3}
+  loadedPrefab: {fileID: 0}

@@ -64,6 +64,8 @@ public class Building : Unit, IWorkplace, ISpawner
 
     public Vector3 WorkLocation { get => this.transform.position; }
 
+    public WorkType WorkType => WorkType.Barracks;
+
     public void ProcessWork()
     {
         // if building is damaged, bee's work would be to repair damages (heal building)

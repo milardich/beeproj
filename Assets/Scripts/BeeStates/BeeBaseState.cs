@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class BeeBaseState
 {
-    public abstract void EnterState(BeeStateManager state);
-    public abstract void UpdateState(BeeStateManager state);
+    public abstract void EnterState(BeeStateManager bee);
+    public abstract void UpdateState(BeeStateManager bee);
+
+    // OnCollisionEnter mby
 }

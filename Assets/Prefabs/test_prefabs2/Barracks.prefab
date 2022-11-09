@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3762954255211633128}
   m_Layer: 7
   m_Name: Barracks
-  m_TagString: Untagged
+  m_TagString: Workplace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

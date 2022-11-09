@@ -6,21 +6,23 @@ using UnityEngine.AI;
 
 public class WorkerBee : Unit, IMoveable, IWorker
 {
-    //[SerializeField] private Vector3 destination;
     private NavMeshAgent agent;
     [SerializeField] float workPerformance = 100; //%, TODO: read this from config file
-    private IWorkplace currentWorkplace;
     private bool isWorking = false;
     [SerializeField] private List<Building> buildableBuildings;
+
+    public HoneyBucket honeyBucket;
 
     void Awake()
     {
         agent = this.GetComponent<NavMeshAgent>();
+        this.AddComponent<HoneyBucket>();
     }
 
     new void Start()
     {
         base.Start();
+        honeyBucket = this.GetComponent<HoneyBucket>();
     }
 
     public void Move(Vector3 destination)
@@ -37,7 +39,7 @@ public class WorkerBee : Unit, IMoveable, IWorker
 
     public float WorkPerformance { get => this.workPerformance; }
 
-    public IWorkplace CurrentWorkplace { get => this.currentWorkplace; }
+    public IWorkplace CurrentWorkplace { get; set; }
 
     public bool IsWorking { get => this.isWorking; set => this.isWorking = value; }
 
@@ -46,8 +48,8 @@ public class WorkerBee : Unit, IMoveable, IWorker
     public void Work(IWorkplace workPlace)
     {
         Debug.Log($"Bee [{this.name}] is now working at [{workPlace.Name}]!");
-        this.currentWorkplace = workPlace;
-        currentWorkplace.AddWorker(this);
+        CurrentWorkplace = workPlace;
+        CurrentWorkplace.AddWorker(this);
         workPlace.ProcessWork();
         this.IsWorking = true;
     }
@@ -57,10 +59,14 @@ public class WorkerBee : Unit, IMoveable, IWorker
         this.IsWorking = false;
         Debug.Log($"Bee [{this.name}] stopped working!");
         //StopMoving();
-        currentWorkplace.RemoveWorker(this);
+        CurrentWorkplace.RemoveWorker(this);
         //this.currentWorkplace = null;
     }
 
+    public float DistanceToDestination()
+    {
+        return this.agent.remainingDistance;
+    }
 
     /* Worker bee abilities:
      * 

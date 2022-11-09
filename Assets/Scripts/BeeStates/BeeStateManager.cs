@@ -1,18 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BeeStateManager : MonoBehaviour
 {
     private BeeBaseState currentState;
-    private BeeTravelToFlowersState travelToFlowerState = new BeeTravelToFlowersState();
-    private BeeCollectHoneyState collectHoneyState = new BeeCollectHoneyState();
-    private BeeTravelToNexusState travelToNexusState = new BeeTravelToNexusState();
-    private BeeUnloadHoneyState unloadHoneyState = new BeeUnloadHoneyState();
+
+    // Collect honey states
+    public BeeTravelingToFlowersState travelToFlowerState = new BeeTravelingToFlowersState();
+    public BeeCollectingHoneyState collectHoneyState = new BeeCollectingHoneyState();
+    public BeeTravelingToNexusState travelToNexusState = new BeeTravelingToNexusState();
+    public BeeUnloadingHoneyState unloadHoneyState = new BeeUnloadingHoneyState();
+    public BeeNotWorkingState notWorkingState = new BeeNotWorkingState();
+
+    // Fix building states
+    // ...
+
+    // Build structure states
+    // ...
+
+    // Some other states
+    // ...
+
+    public WorkerBee WorkerBeeComponent;
+
+
+    public NavMeshAgent Agent { get => this.GetComponent<NavMeshAgent>(); }
 
     void Start()
     {
-        currentState = travelToFlowerState;
+        currentState = notWorkingState;
+        currentState.EnterState(this);
+        WorkerBeeComponent = this.GetComponent<WorkerBee>();
     }
 
 

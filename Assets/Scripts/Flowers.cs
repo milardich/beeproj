@@ -14,6 +14,8 @@ public class Flowers : Unit, IWorkplace
 
     public Vector3 WorkLocation { get { return this.transform.position; } }
 
+    public WorkType WorkType => WorkType.CollectHoney;
+
     void Awake()
     {
         Workers = new List<IWorker>();
@@ -34,7 +36,7 @@ public class Flowers : Unit, IWorkplace
     public void ProcessWork()
     {
         // if worker in working range ..
-
+        /*
         foreach(IWorker worker in Workers)
         {
             if (!worker.WorkDone)
@@ -42,6 +44,7 @@ public class Flowers : Unit, IWorkplace
                 StartCoroutine(CollectHoney(worker));
             }
         }
+        */
     }
 
     public void RemoveWorker(IWorker worker)

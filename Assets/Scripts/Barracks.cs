@@ -22,6 +22,8 @@ public class Barracks : Unit, IWorkplace
 
     public Vector3 WorkLocation => throw new System.NotImplementedException();
 
+    public WorkType WorkType => WorkType.Barracks;
+
     public void AddWorker(IWorker worker)
     {
         throw new System.NotImplementedException();

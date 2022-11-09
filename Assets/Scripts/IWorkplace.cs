@@ -9,6 +9,7 @@ public interface IWorkplace
     void RemoveWorker(IWorker worker);
     Vector3 WorkLocation { get; }
     void ProcessWork();
+    WorkType WorkType { get; }
     /*
      * for buildings, bees would work on repairing damages, upgrading maybe
      * for Collectible zones/flower zones, bees would work on collecting honey

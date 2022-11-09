@@ -16,13 +16,14 @@ public class BeeController : MonoBehaviour
 
     void Update()
     {
-        ControllSelectedBees();
+        //ControllSelectedBees();
         if (Input.GetKeyDown(inputManager.stop))
         {
             StopMovingSelectedUnits();
         }
     }
 
+    /*
     void ControllSelectedBees()
     {
         if (Input.GetMouseButtonDown(inputManager.mouseSecondary))
@@ -69,6 +70,7 @@ public class BeeController : MonoBehaviour
         }
     }
 
+    
     void SendBeesToWork(RaycastHit hit)
     {
         IWorkplace workplace;
@@ -91,6 +93,7 @@ public class BeeController : MonoBehaviour
             }
         }
     }
+    */
 
     //TODO: move this to MovementManager class or something
     void StopMovingSelectedUnits()

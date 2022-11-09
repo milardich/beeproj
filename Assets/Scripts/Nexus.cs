@@ -8,6 +8,9 @@ public class Nexus : Unit, ISpawner, IWorkplace
     public List<IWorker> Workers { get; set; }
     public string Name => "Nexus";
     public Vector3 WorkLocation => this.transform.position;
+
+    public WorkType WorkType => WorkType.UnloadHoney;
+
     private InputManager inputManager;
     private PrefabManager prefabManager;
     [SerializeField] private Vector3 spawnWaypoint;
