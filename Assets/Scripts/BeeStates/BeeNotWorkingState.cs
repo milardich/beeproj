@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class BeeNotWorkingState : BeeBaseState
 {
-    public override void EnterState(BeeStateManager bee)
+    public override void EnterState(BeeStateManager stateManager)
     {
         Debug.Log("Not working now!");
         // stop moving etc
     }
 
-    public override void UpdateState(BeeStateManager bee)
+    public override void UpdateState(BeeStateManager stateManager)
     {
-        bee.ProcessClick();
+        stateManager.ProcessClick();
 
         /*
          * if bee is selected and if right clicked on place of work

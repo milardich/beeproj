@@ -1,6 +1,7 @@
 public enum WorkType
 {
-    Barracks,
+    FixStructure,
     CollectHoney,
-    UnloadHoney
+    UnloadHoney,
+    BuildStructure
 }

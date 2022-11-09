@@ -47,6 +47,7 @@ public class BeeStateManager : MonoBehaviour
         state.EnterState(this);
     }
 
+    // TODO: make this cleaner
     public void ProcessClick()
     {
         if (WorkerBeeComponent.IsSelected() &&
@@ -64,6 +65,7 @@ public class BeeStateManager : MonoBehaviour
                     WorkerBeeComponent.StopAllCoroutines();
                     SwitchState(notWorkingState);
                     WorkerBeeComponent.Move(destination);
+                    WorkerBeeComponent.transform.GetChild(2).gameObject.SetActive(false);
                 }
                 else if (hit.transform.tag == "Workplace")
                 {
@@ -77,7 +79,10 @@ public class BeeStateManager : MonoBehaviour
                         if (workplace.WorkType == WorkType.CollectHoney)
                         {
                             SwitchState(travelToFlowerState);
+                            WorkerBeeComponent.transform.GetChild(2).gameObject.SetActive(true);
                         }
+                        // else if work type == barracks - SwitchState(travelToBarracks
+                        // else if work type == buildStructure - switchState(travelToWorkPlace)
                     }
                 }
             }

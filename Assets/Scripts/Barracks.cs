@@ -22,7 +22,7 @@ public class Barracks : Unit, IWorkplace
 
     public Vector3 WorkLocation => throw new System.NotImplementedException();
 
-    public WorkType WorkType => WorkType.Barracks;
+    public WorkType WorkType => WorkType.FixStructure;
 
     public void AddWorker(IWorker worker)
     {

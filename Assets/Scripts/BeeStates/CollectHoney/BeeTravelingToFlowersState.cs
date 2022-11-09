@@ -8,25 +8,25 @@ public class BeeTravelingToFlowersState : BeeBaseState
     private Vector3 destination;
     private WorkerBee workerBee;
 
-    public override void EnterState(BeeStateManager bee)
+    public override void EnterState(BeeStateManager stateManager)
     {
         Debug.Log("traveling to flowers rn!");
-        workplace = bee.WorkerBeeComponent.CurrentWorkplace;
+        workplace = stateManager.WorkerBeeComponent.CurrentWorkplace;
         destination = workplace.WorkLocation;
-        bee.WorkerBeeComponent.Move(destination);
-        workerBee = bee.WorkerBeeComponent;
+        stateManager.WorkerBeeComponent.Move(destination);
+        workerBee = stateManager.WorkerBeeComponent;
         // get the position of clicked flowers
         // set agent destination to clicked flowers
     }
 
-    public override void UpdateState(BeeStateManager bee)
+    public override void UpdateState(BeeStateManager stateManager)
     {
-        if(bee.WorkerBeeComponent.DistanceToDestination() <= 2.0f)
+        if(stateManager.WorkerBeeComponent.DistanceToDestination() <= 2.0f)
         {
-            bee.SwitchState(bee.collectHoneyState);
+            stateManager.SwitchState(stateManager.collectHoneyState);
         }
 
-        bee.ProcessClick();
+        stateManager.ProcessClick();
 
         /*
          * if reached flower destination / in collision with working range

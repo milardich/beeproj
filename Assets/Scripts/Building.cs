@@ -64,7 +64,7 @@ public class Building : Unit, IWorkplace, ISpawner
 
     public Vector3 WorkLocation { get => this.transform.position; }
 
-    public WorkType WorkType => WorkType.Barracks;
+    public WorkType WorkType => WorkType.FixStructure;
 
     public void ProcessWork()
     {

@@ -6,18 +6,18 @@ public class BeeCollectingHoneyState : BeeBaseState
 {
     WorkerBee workerBee;
 
-    public override void EnterState(BeeStateManager bee)
+    public override void EnterState(BeeStateManager stateManager)
     {
         Debug.Log("Collectin honey rn!");
-        workerBee = bee.WorkerBeeComponent;
-        bee.StartCoroutine(workerBee.CollectHoney());
+        workerBee = stateManager.WorkerBeeComponent;
+        workerBee.StartCoroutine(workerBee.CollectHoney());
         // start timer for collecting honey
         // TODO: play animation for
     }
 
-    public override void UpdateState(BeeStateManager bee)
+    public override void UpdateState(BeeStateManager stateManager)
     {
-        bee.ProcessClick();
+        stateManager.ProcessClick();
 
         /*
          * update bee honey capacity over time

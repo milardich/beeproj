@@ -6,24 +6,24 @@ public class BeeTravelingToNexusState : BeeBaseState
 {
     private Vector3 _closestNexusLocation;
     private WorkerBee workerBee;
-    public override void EnterState(BeeStateManager bee)
+    public override void EnterState(BeeStateManager stateManager)
     {
         Debug.Log("traveling to NEXUS rn!");
         _closestNexusLocation = GetClosestNexusLocation();
-        bee.WorkerBeeComponent.Move(_closestNexusLocation);
-        workerBee = bee.WorkerBeeComponent;
+        stateManager.WorkerBeeComponent.Move(_closestNexusLocation);
+        workerBee = stateManager.WorkerBeeComponent;
         // get location of the closest nexus
         // set agent destination to that location
     }
 
-    public override void UpdateState(BeeStateManager bee)
+    public override void UpdateState(BeeStateManager stateManager)
     {
-        if (bee.WorkerBeeComponent.DistanceToDestination() <= 2.0f)
+        if (stateManager.WorkerBeeComponent.DistanceToDestination() <= 2.0f)
         {
-            bee.SwitchState(bee.unloadHoneyState);
+            stateManager.SwitchState(stateManager.unloadHoneyState);
         }
 
-        bee.ProcessClick();
+        stateManager.ProcessClick();
         /*
          * if reached nexus destination / in collision with working range
          *      -change state to BeeUnloadingHoneyState

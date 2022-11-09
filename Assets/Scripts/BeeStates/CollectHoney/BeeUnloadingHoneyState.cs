@@ -7,19 +7,19 @@ public class BeeUnloadingHoneyState : BeeBaseState
 {
     private WorkerBee workerBee;
 
-    public override void EnterState(BeeStateManager bee)
+    public override void EnterState(BeeStateManager stateManager)
     {
         Debug.Log("Unloading honey rn!");
-        workerBee = bee.WorkerBeeComponent;
-        bee.StartCoroutine(workerBee.UnloadHoney());
+        workerBee = stateManager.WorkerBeeComponent;
+        workerBee.StartCoroutine(workerBee.UnloadHoney());
 
         // set timer for unloading time
         // TODO: play unloading honey animation 
     }
 
-    public override void UpdateState(BeeStateManager bee)
+    public override void UpdateState(BeeStateManager stateManager)
     {
-        bee.ProcessClick();
+        stateManager.ProcessClick();
 
         /*
          * update bee honey capacity over time 
