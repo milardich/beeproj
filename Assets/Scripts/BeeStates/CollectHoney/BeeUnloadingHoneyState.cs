@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class BeeUnloadingHoneyState : BeeBaseState
 {
+    HoneyBucket bucket;
     public override void EnterState(BeeStateManager bee)
     {
         Debug.Log("Unloading honey rn!");
-
+        bucket = bee.WorkerBeeComponent.honeyBucket;
+        bee.StartCoroutine(UnloadHoney(bee));
         // set timer for unloading time
         // TODO: play unloading honey animation 
     }
@@ -27,5 +30,13 @@ public class BeeUnloadingHoneyState : BeeBaseState
         //      - change state to corresponding state for that job
 
         // if bee is selected and right clicked on terrain - switch states
+    }
+
+    private IEnumerator UnloadHoney(BeeStateManager bee)
+    {
+        yield return new WaitForSeconds(5.0f);
+        bucket.Empty(5);
+        Debug.Log($"Honey unloaded ({bucket.CurrentCapacity})!");
+        bee.SwitchState(bee.travelToFlowerState);
     }
 }

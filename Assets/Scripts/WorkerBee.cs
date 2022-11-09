@@ -71,6 +71,21 @@ public class WorkerBee : Unit, IMoveable, IWorker
         return this.agent.remainingDistance;
     }
 
+
+    // TOOD: 
+    public IWorkplace GetClosestNexus()
+    {
+        IWorkplace nexus = null;
+        return nexus;
+    }
+
+    // TODO:
+    public IWorkplace GetClosestFlowers()
+    {
+        IWorkplace flowers = null;
+        return flowers;
+    }
+
     /* Worker bee abilities:
      * 
      * work (collect honey) 
