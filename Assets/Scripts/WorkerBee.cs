@@ -11,24 +11,27 @@ public class WorkerBee : Unit, IMoveable, IWorker
     private bool isWorking = false;
     [SerializeField] private List<Building> buildableBuildings;
 
+    public Vector3 CurrentDestination;
     public HoneyBucket honeyBucket;
 
     void Awake()
     {
         agent = this.GetComponent<NavMeshAgent>();
         this.AddComponent<HoneyBucket>();
+        honeyBucket = this.GetComponent<HoneyBucket>();
+
     }
 
     new void Start()
     {
         base.Start();
-        honeyBucket = this.GetComponent<HoneyBucket>();
     }
 
     public void Move(Vector3 destination)
     {
         this.agent.isStopped = false;
         this.agent.SetDestination(destination);
+        CurrentDestination = destination;
     }
 
     public void StopMoving()
