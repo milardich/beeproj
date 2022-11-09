@@ -46,4 +46,41 @@ public class BeeStateManager : MonoBehaviour
         currentState = state;
         state.EnterState(this);
     }
+
+    public void ProcessClick()
+    {
+        if (WorkerBeeComponent.IsSelected() &&
+            Input.GetMouseButtonDown(InputManager.Instance.mouseSecondary))
+        {
+            Vector3 destination = Vector3.zero;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.tag == "Terrain")
+                {
+                    destination = hit.point;
+                    WorkerBeeComponent.StopAllCoroutines();
+                    SwitchState(notWorkingState);
+                    WorkerBeeComponent.Move(destination);
+                }
+                else if (hit.transform.tag == "Workplace")
+                {
+                    WorkerBeeComponent.StopAllCoroutines();
+                    SwitchState(notWorkingState);
+
+                    bool isWorkplace = hit.transform.TryGetComponent<IWorkplace>(out IWorkplace workplace);
+                    if (isWorkplace)
+                    {
+                        WorkerBeeComponent.Work(workplace);
+                        if (workplace.WorkType == WorkType.CollectHoney)
+                        {
+                            SwitchState(travelToFlowerState);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

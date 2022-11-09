@@ -5,11 +5,13 @@ using UnityEngine;
 public class BeeTravelingToNexusState : BeeBaseState
 {
     private Vector3 _closestNexusLocation;
+    private WorkerBee workerBee;
     public override void EnterState(BeeStateManager bee)
     {
         Debug.Log("traveling to NEXUS rn!");
         _closestNexusLocation = GetClosestNexusLocation();
         bee.WorkerBeeComponent.Move(_closestNexusLocation);
+        workerBee = bee.WorkerBeeComponent;
         // get location of the closest nexus
         // set agent destination to that location
     }
@@ -20,6 +22,8 @@ public class BeeTravelingToNexusState : BeeBaseState
         {
             bee.SwitchState(bee.unloadHoneyState);
         }
+
+        bee.ProcessClick();
         /*
          * if reached nexus destination / in collision with working range
          *      -change state to BeeUnloadingHoneyState

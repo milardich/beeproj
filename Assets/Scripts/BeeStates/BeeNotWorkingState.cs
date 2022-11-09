@@ -12,36 +12,7 @@ public class BeeNotWorkingState : BeeBaseState
 
     public override void UpdateState(BeeStateManager bee)
     {
-        WorkerBee workerBee = bee.WorkerBeeComponent;
-
-        if(bee.WorkerBeeComponent.IsSelected() &&
-            Input.GetMouseButtonDown(InputManager.Instance.mouseSecondary))
-        {
-            Vector3 destination = Vector3.zero;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.tag == "Terrain")
-                {
-                    destination = hit.point;
-                    workerBee.Move(destination);
-                }
-                else if(hit.transform.tag == "Workplace")
-                {
-                    bool isWorkplace = hit.transform.TryGetComponent<IWorkplace>(out IWorkplace workplace);
-                    if (isWorkplace)
-                    {
-                        bee.WorkerBeeComponent.Work(workplace);
-                        if(workplace.WorkType == WorkType.CollectHoney)
-                        {
-                            bee.SwitchState(bee.travelToFlowerState);
-                        }
-                    }
-                }
-            }
-        }
+        bee.ProcessClick();
 
         /*
          * if bee is selected and if right clicked on place of work

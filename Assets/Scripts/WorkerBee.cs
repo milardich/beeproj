@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +15,8 @@ public class WorkerBee : Unit, IMoveable, IWorker
 
     public Vector3 CurrentDestination;
     public HoneyBucket honeyBucket;
+    private float unloadTime = 2.0f;
+    public BeeStateManager beeStateManager;
 
     void Awake()
     {
@@ -25,6 +29,7 @@ public class WorkerBee : Unit, IMoveable, IWorker
     new void Start()
     {
         base.Start();
+        beeStateManager = this.GetComponent<BeeStateManager>();
     }
 
     public void Move(Vector3 destination)
@@ -84,6 +89,22 @@ public class WorkerBee : Unit, IMoveable, IWorker
     {
         IWorkplace flowers = null;
         return flowers;
+    }
+
+    public IEnumerator CollectHoney()
+    {
+        yield return new WaitForSeconds(5.0f);
+        honeyBucket.FillUp(5);
+        Debug.Log($"Honey collected ({honeyBucket.CurrentCapacity}) delivering to nexus rn!");
+        beeStateManager.SwitchState(beeStateManager.travelToNexusState);
+    }
+
+    public IEnumerator UnloadHoney()
+    {
+        yield return new WaitForSeconds(unloadTime);
+        honeyBucket.Empty(5);
+        Debug.Log($"Honey unloaded ({honeyBucket.CurrentCapacity})!");
+        beeStateManager.SwitchState(beeStateManager.travelToFlowerState);
     }
 
     /* Worker bee abilities:
