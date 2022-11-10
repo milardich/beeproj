@@ -104,7 +104,46 @@ public class WorkerBee : Unit, IMoveable, IWorker
         yield return new WaitForSeconds(unloadTime);
         honeyBucket.Empty(5);
         Debug.Log($"Honey unloaded ({honeyBucket.CurrentCapacity})!");
+        //this.Work(GetClosestWorkplace(WorkType.CollectHoney));
         beeStateManager.SwitchState(beeStateManager.travelToFlowerState);
+    }
+
+    // TODO:
+    public IWorkplace GetClosestWorkplace(WorkType type)
+    {
+        IWorkplace closestWorkplace = null;
+        List<IWorkplace> workplaces = UnitManager.Instance.AllWorkplaces;
+        List<IWorkplace> allFlowers = UnitManager.Instance.AllFlowers;
+        List<IWorkplace> allNexuses = UnitManager.Instance.AllNexuses;
+
+        float minimumDistance;
+        if(type == WorkType.CollectHoney) 
+        {
+            minimumDistance = Vector3.Distance(this.transform.position, allFlowers[0].WorkLocation);
+            foreach (IWorkplace flowersWorkplace in allFlowers)
+            {
+                float distance = Vector3.Distance(this.transform.position, flowersWorkplace.WorkLocation);
+                if (distance <= minimumDistance)
+                {
+                    closestWorkplace = flowersWorkplace;
+                }
+            }
+        }
+
+        if(type == WorkType.UnloadHoney)
+        {
+            minimumDistance = Vector3.Distance(this.transform.position, allNexuses[0].WorkLocation);
+            foreach (IWorkplace nexusWorkplace in allNexuses)
+            {
+                float distance = Vector3.Distance(this.transform.position, nexusWorkplace.WorkLocation);
+                if (distance <= minimumDistance)
+                {
+                    closestWorkplace = nexusWorkplace;
+                }
+            }
+        }
+
+        return closestWorkplace;
     }
 
     /* Worker bee abilities:

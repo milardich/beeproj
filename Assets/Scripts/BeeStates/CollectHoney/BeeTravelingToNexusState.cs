@@ -9,7 +9,7 @@ public class BeeTravelingToNexusState : BeeBaseState
     public override void EnterState(BeeStateManager stateManager)
     {
         Debug.Log("traveling to NEXUS rn!");
-        _closestNexusLocation = GetClosestNexusLocation();
+        _closestNexusLocation = stateManager.WorkerBeeComponent.GetClosestWorkplace(WorkType.UnloadHoney).WorkLocation;
         stateManager.WorkerBeeComponent.Move(_closestNexusLocation);
         workerBee = stateManager.WorkerBeeComponent;
         // get location of the closest nexus

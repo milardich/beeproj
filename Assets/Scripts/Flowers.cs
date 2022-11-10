@@ -7,8 +7,8 @@ public class Flowers : Unit, IWorkplace
     private float baseWorkTime = 5.0f;
     public List<IWorker> Workers { get; set; }
 
-    [SerializeField] private Unit closestNexusUnit;
-    private IWorkplace closestNexusWorkplace;
+    //[SerializeField] private Unit closestNexusUnit;
+    //private IWorkplace closestNexusWorkplace;
 
     public string Name { get; set; }
 
@@ -25,7 +25,11 @@ public class Flowers : Unit, IWorkplace
     {
         base.Start();
 
-        closestNexusUnit.TryGetComponent<IWorkplace>(out closestNexusWorkplace);
+        if (!UnitManager.Instance.AllFlowers.Contains(this))
+        {
+            UnitManager.Instance.AllFlowers.Add(this);
+        }
+        //closestNexusUnit.TryGetComponent<IWorkplace>(out closestNexusWorkplace);
     }
 
     public void AddWorker(IWorker worker)
@@ -61,6 +65,6 @@ public class Flowers : Unit, IWorkplace
         Debug.Log("Honey collected - delivering to nexus rn!");
         worker.WorkDone = true;
         
-        worker.Work(closestNexusWorkplace);
+        //worker.Work(closestNexusWorkplace);
     }
 }

@@ -81,6 +81,11 @@ public class BeeStateManager : MonoBehaviour
                             SwitchState(travelToFlowerState);
                             WorkerBeeComponent.transform.GetChild(2).gameObject.SetActive(true);
                         }
+                        else if(workplace.WorkType == WorkType.UnloadHoney)
+                        {
+                            SwitchState(travelToNexusState);
+                            WorkerBeeComponent.transform.GetChild(2).gameObject.SetActive(true);
+                        }
                         // else if work type == barracks - SwitchState(travelToBarracks
                         // else if work type == buildStructure - switchState(travelToWorkPlace)
                     }

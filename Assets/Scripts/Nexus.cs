@@ -27,6 +27,10 @@ public class Nexus : Unit, ISpawner, IWorkplace
         base.Start();
         inputManager = InputManager.Instance;
         prefabManager = PrefabManager.Instance;
+        if (!UnitManager.Instance.AllNexuses.Contains(this))
+        {
+            UnitManager.Instance.AllNexuses.Add(this);
+        }
         SpawnableUnits.Add(prefabManager.UnitPrefabs["Worker"]);
     }
 
